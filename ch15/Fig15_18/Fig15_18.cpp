@@ -9,22 +9,21 @@ using std::scientific;
 
 int main()
 {
-   double x = 0.001234567;
-   double y = 1.946e9;
+	double x = 0.001234567890;
+	double y = 1.946e9;
 
-   // display x and y in default format
-   cout << "Displayed in default format:" << endl
-      << x << '\t' << y << endl;
+	cout << "Displayed in default format:" << endl
+		<< x << '\t' << y << endl;
 
-   // display x and y in scientific format
-   cout << "\nDisplayed in scientific format:" << endl
-      << scientific << x << '\t' << y << endl;
+	cout << "Displayed in scientific format:" << endl
+		<< scientific << x << '\t' << y << endl;
 
-   // display x and y in fixed format
-   cout << "\nDisplayed in fixed format:" << endl
-      << fixed << x << '\t' << y << endl;
-   return 0;
-} // end main
+	cout << "Displayed in fixed format:" << endl
+		<< fixed << x << '\t' << y << endl;
+
+	return 0;
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

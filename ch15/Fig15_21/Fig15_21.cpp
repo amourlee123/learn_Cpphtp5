@@ -10,32 +10,29 @@ using std::showbase;
 
 int main()
 {
-   int integerValue = 1000;
-   double doubleValue = 0.0947628;
+	int integerValue = 1000;
+	double doubleValue = 0.06726762;
 
-   // display flags value, int and double values (original format)
-   cout << "The value of the flags variable is: " << cout.flags()
-      << "\nPrint int and double in original format:\n"
-      << integerValue << '\t' << doubleValue << endl << endl;
+	cout << "The value of the flags variable is: " << cout.flags()
+		<< "\nPrint int and double in original format:\n"
+		<< integerValue << '\t' << doubleValue << endl << endl;
 
-   // use cout flags function to save original format
-   ios_base::fmtflags originalFormat = cout.flags();
-   cout << showbase << oct << scientific; // change format
+	ios_base::fmtflags originalFormat = cout.flags();
+	cout << showbase << oct << scientific;
 
-   // display flags value, int and double values (new format)
-   cout << "The value of the flags variable is: " << cout.flags()
-      << "\nPrint int and double in a new format:\n"
-      << integerValue << '\t' << doubleValue << endl << endl;
+	cout << "The value of the flags variable is: " << cout.flags()
+		<< "\nPrint int and double in a new format:\n"
+		<< integerValue << '\t' << doubleValue << endl << endl;
 
-   cout.flags( originalFormat ); // restore format
+	cout.flags( originalFormat );
 
-   // display flags value, int and double values (original format)
-   cout << "The restored value of the flags variable is: " 
-      << cout.flags()
-      << "\nPrint values in original format again:\n"
-      << integerValue << '\t' << doubleValue << endl;
-   return 0;
-} // end main
+	cout << "The restored value of the flags variable is: "
+		<< cout.flags() << "\nPrint values in original format again:\n"
+		<< integerValue << "\t" << doubleValue << endl;
+
+	return 0;
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

@@ -6,53 +6,46 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-#include "DivideByZeroException.h" // DivideByZeroException class 
+#include "DivideByZeroException.h"
 
-// perform division and throw DivideByZeroException object if 
-// divide-by-zero exception occurs
 double quotient( int numerator, int denominator )
 {
-   // throw DivideByZeroException if trying to divide by zero
-   if ( denominator == 0 )
-      throw DivideByZeroException(); // terminate function
+	if( denominator == 0 )
+	{
+		throw DivideByZeroException();
+	}
 
-   // return division result
-   return static_cast< double >( numerator ) / denominator;
-} // end function quotient
+	return static_cast< double >( numerator ) / denominator;
+}
 
 int main()
 {
-   int number1; // user-specified numerator
-   int number2; // user-specified denominator
-   double result; // result of division
+	int number1;
+	int number2;
+	double result;
 
-   cout << "Enter two integers (end-of-file to end): ";
+	cout << "Enter two integers (end-of-file to end): ";
 
-   // enable user to enter two integers to divide
-   while ( cin >> number1 >> number2 ) 
-   {
-      // try block contains code that might throw exception
-      // and code that should not execute if an exception occurs
-      try 
-      {
-         result = quotient( number1, number2 );
-         cout << "The quotient is: " << result << endl;
-      } // end try
+	while( cin >> number1 >> number2 )
+	{
+		try{
+			result = quotient( number1, number2 );
+			cout << "The quotient is: " << result << endl;
+		}
 
-      // exception handler handles a divide-by-zero exception
-      catch ( DivideByZeroException &divideByZeroException ) 
-      {
-         cout << "Exception occurred: " 
-            << divideByZeroException.what() << endl;
-      } // end catch
+		catch( DivideByZeroException &divideByZeroException )
+		{
+			cout << "Exception occurred: "
+				<< divideByZeroException.what() << endl;
+		}
 
-      cout << "\nEnter two integers (end-of-file to end): ";
-   } // end while
+		cout << "\nEnter two integers (end-of-file to end): ";
+	}
 
-   cout << endl;
-   return 0; // terminate normally
-} // end main
+	cout << endl;
 
+	return 0;
+}
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

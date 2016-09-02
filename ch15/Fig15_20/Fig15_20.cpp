@@ -1,34 +1,33 @@
 // Fig. 15.20: Fig15_20.cpp
 // Demonstrating stream-manipulators boolalpha and noboolalpha.
 #include <iostream>
-using std::boolalpha;
 using std::cout;
 using std::endl;
+using std::boolalpha;
 using std::noboolalpha;
 
 int main()
 {
-   bool booleanValue = true;
+	bool booleanValue = true;
 
-   // display default true booleanValue
-   cout << "booleanValue is " << booleanValue << endl;
+	cout << "booleanValue is " << booleanValue << endl;
 
-   // display booleanValue after using boolalpha
-   cout << "booleanValue (after using boolalpha) is "
-      << boolalpha << booleanValue << endl << endl;
+	cout << "booleanValue (after using boolalpha) is "
+		<< boolalpha << booleanValue << endl << endl;
 
-   cout << "switch booleanValue and use noboolalpha" << endl;
-   booleanValue = false; // change booleanValue
-   cout << noboolalpha << endl; // use noboolalpha
+	cout << "switch booleanValue and use noboolalpha" << endl;
+	booleanValue = false;
 
-   // display default false booleanValue after using noboolalpha
-   cout << "booleanValue is " << booleanValue << endl;
+	cout << endl;
 
-   // display booleanValue after using boolalpha again
-   cout << "booleanValue (after using boolalpha) is "
-      << boolalpha << booleanValue << endl;
-   return 0;
-} // end main
+	cout << "booleanValue is " << noboolalpha << booleanValue << endl;
+
+	cout << "booleanValue (after using boolalpha) is "
+		<< boolalpha << booleanValue << endl;
+
+	return 0;  
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

@@ -11,43 +11,36 @@ using std::left;
 using std::right;
 using std::showbase;
 
+
 #include <iomanip>
 using std::setfill;
 using std::setw;
 
 int main()
 {
-   int x = 10000;
+	int x = 10000;
 
-   // display x
-   cout << x << " printed as int right and left justified\n"
-      << "and as hex with internal justification.\n"
-      << "Using the default pad character (space):" << endl;
+	cout << x << " printed as int right and left justified\n"
+		<< "and as hex with internal justification.\n"
+		<< "Using the defalut pad character (space):" << endl;
 
-   // display x with base
-   cout << showbase << setw( 10 ) << x << endl;
+	cout << showbase << setw( 10 ) << x << endl;
 
-   // display x with left justification
-   cout << left << setw( 10 ) << x << endl;
+	cout << left << setw( 10 ) << x << endl;
 
-   // display x as hex with internal justification
-   cout << internal << setw( 10 ) << hex << x << endl << endl;
+	cout << internal << setw( 10 ) << hex << x << endl << endl;
 
-   cout << "Using various padding characters:" << endl;
+	cout << "Using various padding characters:" << endl;
 
-   // display x using padded characters (right justification)
-   cout << right;
-   cout.fill( '*' );
-   cout << setw( 10 ) << dec << x << endl;
+	cout.fill( '*' );
+	cout << setw( 10 ) << dec << x << endl;
 
-   // display x using padded characters (left justification)
-   cout << left << setw( 10 ) << setfill( '%' ) << x << endl;
+	cout << left << setw( 10 ) << setfill( '#' ) << x << endl;
 
-   // display x using padded characters (internal justification)
-   cout << internal << setw( 10 ) << setfill( '^' ) << hex
-      << x << endl;
-   return 0;
-} // end main
+	cout << internal << setw( 10 ) << setfill( '^' ) << hex << x << endl;
+
+	return 0;
+}
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

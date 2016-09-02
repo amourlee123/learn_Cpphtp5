@@ -2,50 +2,45 @@
 // Creating and testing user-defined, nonparameterized 
 // stream manipulators.
 #include <iostream>
-using std::ostream;
 using std::cout;
 using std::flush;
+using std::ostream;
 
-// bell manipulator (using escape sequence \a)
 ostream& bell( ostream& output )
 {
-   return output << '\a';  // issue system beep
-} // end bell manipulator
+	return output << '\a';
+}
 
-// carriageReturn manipulator (using escape sequence \r)
 ostream& carriageReturn( ostream& output )
 {
-   return output << '\r';  // issue carriage return
-} // end carriageReturn manipulator
+	return output << '\r';
+}
 
-// tab manipulator (using escape sequence \t)
 ostream& tab( ostream& output )
 {
-   return output << '\t';  // issue tab
-} // end tab manipulator
+	return output << '\t';
+}
 
-// endLine manipulator (using escape sequence \n and member
-// function flush)
-ostream& endLine( ostream& output ) 
-{ 
-   return output << '\n' << flush; // issue endl-like end of line
-} // end endLine manipulator
+ostream& endLine( ostream& output )
+{
+	return output << '\n' << flush;
+}
 
 int main()
 {
-   // use tab and endLine manipulators
-   cout << "Testing the tab manipulator:" << endLine
-      << 'a' << tab << 'b' << tab << 'c' << endLine;
+	cout << "Testing the tab manipulator:" << endLine
+		<< 'a' << tab << 'b' << tab << 'c' << endLine;
 
-   cout << "Testing the carriageReturn and bell manipulators:"
-      << endLine << "..........";
+	cout << "Testing the carriageReturn and bell manipulators:"
+		<< endLine << ".............";
 
-   cout << bell; // use bell manipulator
+	cout << bell;
 
-   // use ret and endLine manipulators
-   cout << carriageReturn << "-----" << endLine;
-   return 0;
-} // end main
+	cout << carriageReturn << "------" << endLine;
+
+	return 0;
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *
