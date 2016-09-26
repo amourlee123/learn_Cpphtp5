@@ -1,46 +1,44 @@
 // Fig. 17.4: Fig17_04.cpp
 // Create a sequential file.
 #include <iostream>
-using std::cerr;
-using std::cin;
 using std::cout;
+using std::cin;
+using std::cerr;
 using std::endl;
 using std::ios;
 
-#include <fstream> // file stream
-using std::ofstream; // output file stream
+#include <fstream>
+using std::ofstream;
 
-#include <cstdlib> 
-using std::exit; // exit function prototype
+#include <cstdlib>
+using std::exit;
 
 int main()
 {
-   // ofstream constructor opens file                
-   ofstream outClientFile( "clients.dat", ios::out );
+	ofstream outClientFile( "clients.dat", ios::out );
 
-   // exit program if unable to create file
-   if ( !outClientFile ) // overloaded ! operator
-   {
-      cerr << "File could not be opened" << endl;
-      exit( 1 );
-   } // end if
+	if( !outClientFile )
+	{
+		cerr << "File coule not opened" << endl;
+		exit( 1 );
+	}
 
-   cout << "Enter the account, name, and balance." << endl
-      << "Enter end-of-file to end input.\n? ";
+	cout << "Enter the account, name, and balance." << endl
+		<< "Enter end-of-file to end input.\n? ";
 
-   int account;
-   char name[ 30 ];
-   double balance;
+	int account;
+	char name[ 30 ];
+	double balance;
 
-   // read account, name and balance from cin, then place in file
-   while ( cin >> account >> name >> balance )
-   {
-      outClientFile << account << ' ' << name << ' ' << balance << endl;
-      cout << "? ";
-   } // end while
+	while( cin >> account >> name >> balance )
+	{
+		outClientFile << account << ' ' << name << ' ' << balance << endl;
+		cout << "? ";
+	}
 
-   return 0; // ofstream destructor closes file
-} // end main
+	return 0;
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

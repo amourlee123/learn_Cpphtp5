@@ -1,41 +1,37 @@
 // Fig. 21.13: Stack.h
 // Template Stack class definition derived from class List.
+
 #ifndef STACK_H
 #define STACK_H
 
-#include "List.h" // List class definition
+#include "List.h"
 
 template< typename STACKTYPE >
-class Stack : private List< STACKTYPE > 
+class Stack : private List< STACKTYPE >
 {
 public:
-   // push calls the List function insertAtFront
-   void push( const STACKTYPE &data ) 
-   { 
-      insertAtFront( data ); 
-   } // end function push
+	void push( const STACKTYPE &data )
+	{
+		this->insertAtFront( data );
+	}
 
-   // pop calls the List function removeFromFront
-   bool pop( STACKTYPE &data ) 
-   { 
-      return removeFromFront( data ); 
-   } // end function pop
+	bool pop( STACKTYPE &data )
+	{
+		return this->removeFromFront( data );
+	}
 
-   // isStackEmpty calls the List function isEmpty
-   bool isStackEmpty() const 
-   { 
-      return isEmpty(); 
-   } // end function isStackEmpty
- 
-   // printStack calls the List function print
-   void printStack() const 
-   { 
-      print(); 
-   } // end function print 
-}; // end class Stack
+	bool isStackEmpty() const
+	{
+		return this->isEmpty();
+	}
+
+	void printStack() const
+	{
+		this->print();
+	}
+};
 
 #endif
-
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *

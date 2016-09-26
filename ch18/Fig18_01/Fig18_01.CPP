@@ -9,42 +9,45 @@ using std::string;
 
 int main()
 {
-   string string1( "cat" );
-   string string2;
-   string string3;
+	string string1( "cat" );
+	string string2;
+	string string3;
 
-   string2 = string1; // assign string1 to string2
-   string3.assign( string1 ); // assign string1 to string3
-   cout << "string1: " << string1 << "\nstring2: " << string2
-      << "\nstring3: " << string3 << "\n\n";
+	string2 = string1;
+	string3.assign( string1 );
 
-   // modify string2 and string3 
-   string2[ 0 ] = string3[ 2 ] = 'r';
+	cout << "string1: " << string1 << "\nstring2: " << string2
+		<< "\nstring3: " << string3  << "\n\n";
 
-   cout << "After modification of string2 and string3:\n" << "string1: " 
-      << string1 << "\nstring2: " << string2 << "\nstring3: ";
+	string2[ 0 ] = string3[ 2 ] = 'r';
 
-   // demonstrating member function at
-   for ( int i = 0; i < string3.length(); i++ ) 
-      cout << string3.at( i );
+	cout << "After modification of string2 and string3:\n" << "string1: "
+		<< string1 << "\nstring2: " << string2 << "\nstring3: ";
 
-   // declare string4 and string5
-   string string4( string1 + "apult" ); // concatenation
-   string string5;
 
-   // overloaded +=                               
-   string3 += "pet"; // create "carpet"           
-   string1.append( "acomb" ); // create "catacomb"
+	for ( int i = 0; i < string3.length(); i++ )
+	{
+		cout << string3.at( i );
+	}
 
-   // append subscript locations 4 through end of string1 to
-   // create string "comb" (string5 was initially empty)
-   string5.append( string1, 4, string1.length() - 4 );
-                                 
-   cout << "\n\nAfter concatenation:\nstring1: " << string1 
-      << "\nstring2: " << string2 << "\nstring3: " << string3 
-      << "\nstring4: " << string4 << "\nstring5: " << string5 << endl;
-   return 0;
-}  // end main
+	string string4( string1 + "apult" );
+	string string5;
+
+	string3 += "pet";
+	string1.append( "acomb" );
+
+	string5.append( string1, 4, string1.length() - 4 );
+
+	cout << "\n\nAfter concatenation:\nstring1: " << string1
+		<< "\nstring2: " << string2
+		<< "\nstring3: " << string3
+		<< "\nstring4: " << string4
+		<< "\nstring5: " << string5 << endl;
+
+	return 0;
+}
+
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

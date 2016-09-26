@@ -8,31 +8,30 @@ using std::ios;
 #include <fstream>
 using std::ofstream;
 
-#include <cstdlib> 
-using std::exit; // exit function prototype
+#include <cstdlib>
+using std::exit;
 
-#include "ClientData.h" // ClientData class definition
+#include "ClientData.h"
 
 int main()
 {
-   ofstream outCredit( "credit.dat", ios::binary );
+	ofstream outCredit( "credit.dat", ios::binary );
 
-   // exit program if ofstream could not open file
-   if ( !outCredit ) 
-   {
-      cerr << "File could not be opened." << endl;
-      exit( 1 );
-   } // end if
+	if( !outCredit )
+	{
+		cerr << "File could not be opened." << endl;
+		exit( 1 );
+	}
 
-   ClientData blankClient; // constructor zeros out each data member
+	ClientData blankClient;
 
-   // output 100 blank records to file
-   for ( int i = 0; i < 100; i++ )
-      outCredit.write( reinterpret_cast< const char * >( &blankClient ), 
-         sizeof( ClientData ) );
+	for ( int i = 0; i < 100; i++ )
+	{
+		outCredit.write( reinterpret_cast< const char * >( &blankClient ), sizeof(ClientData ) );
+	}
 
-   return 0;
-} // end main
+	return 0;
+}
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

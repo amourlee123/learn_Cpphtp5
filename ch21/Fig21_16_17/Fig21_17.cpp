@@ -4,57 +4,47 @@
 using std::cout;
 using std::endl;
 
-#include "Queue.h" // Queue class definition
+#include "Queue.h"
 
 int main()
 {
-   Queue< int > intQueue; // create Queue of integers
+	Queue< int > intQueue;
 
-   cout << "processing an integer Queue" << endl;
+	cout << "processing an integer Queue" << endl;
+	for( int i = 0; i < 3; i++ )
+	{
+		intQueue.enqueue( i );
+		intQueue.printQueue();
+	}
 
-   // enqueue integers onto intQueue
-   for ( int i = 0; i < 3; i++ ) 
-   {
-      intQueue.enqueue( i );
-      intQueue.printQueue();
-   } // end for
+	int dequeueInteger;
+	while( !intQueue.isQueueEmpty() )
+	{
+		intQueue.dequeue( dequeueInteger );
+		cout << dequeueInteger << " dequeued" << endl;
+		intQueue.printQueue();
+	}
 
-   int dequeueInteger; // store dequeued integer
+	Queue< double >doubleQueue;
+	double value = 1.1;
 
-   // dequeue integers from intQueue
-   while ( !intQueue.isQueueEmpty() ) 
-   {
-      intQueue.dequeue( dequeueInteger );
-      cout << dequeueInteger << " dequeued" << endl;
-      intQueue.printQueue();
-   } // end while
+	cout << "processing a double Queue" << endl;
+	for( int j = 0; j < 3; j++ )
+	{
+		doubleQueue.enqueue( value );
+		doubleQueue.printQueue();
+		value += 1.1;	
+	}
+	double dequeueDouble;
+	while( !doubleQueue.isQueueEmpty() )
+	{
+		doubleQueue.dequeue( dequeueDouble );
+		cout << dequeueDouble << " dequeued" << endl;
+		doubleQueue.printQueue();
+	}	
 
-   Queue< double > doubleQueue; // create Queue of doubles
-   double value = 1.1;
-
-   cout << "processing a double Queue" << endl;
-
-   // enqueue floating-point values onto doubleQueue
-   for ( int j = 0; j < 3; j++ ) 
-   {
-      doubleQueue.enqueue( value );
-      doubleQueue.printQueue();
-      value += 1.1;
-   } // end for
-
-   double dequeueDouble; // store dequeued double
-
-   // dequeue floating-point values from doubleQueue
-   while ( !doubleQueue.isQueueEmpty() ) 
-   {
-      doubleQueue.dequeue( dequeueDouble );
-      cout << dequeueDouble << " dequeued" << endl;
-      doubleQueue.printQueue();
-   } // end while
-
-   return 0;
-} // end main
-
+	return 0;
+}
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *

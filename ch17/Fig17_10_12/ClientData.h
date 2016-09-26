@@ -6,35 +6,31 @@
 #include <string>
 using std::string;
 
-class ClientData 
+class ClientData
 {
 public:
-   // default ClientData constructor
-   ClientData( int = 0, string = "", string = "", double = 0.0 );
+	ClientData( int = 0, string = "", string = "", double = 0.0 );
+	
+	void setAccountNumber( int );
+	int getAccountNumber() const;
 
-   // accessor functions for accountNumber
-   void setAccountNumber( int );
-   int getAccountNumber() const;
+	void setLastName( string );
+	string getLastName() const; 
 
-   // accessor functions for lastName
-   void setLastName( string );
-   string getLastName() const;
+	void setFirstName( string );
+	string getFirstName() const;
 
-   // accessor functions for firstName
-   void setFirstName( string );
-   string getFirstName() const;
-
-   // accessor functions for balance
-   void setBalance( double );
-   double getBalance() const;
+	void setBalance( double );
+	double getBalance() const;
 private:
-   int accountNumber;
-   char lastName[ 15 ];
-   char firstName[ 10 ];
-   double balance;
-}; // end class ClientData
+	int accountNumber;
+	char lastName[ 15 ];
+	char firstName[ 10 ];
+	double balance;
+};
 
 #endif
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

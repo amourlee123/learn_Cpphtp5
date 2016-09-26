@@ -3,42 +3,38 @@
 #ifndef STACKCOMPOSITION_H
 #define STACKCOMPOSITION_H
 
-#include "List.h" // List class definition
+#include "List.h"
 
 template< typename STACKTYPE >
-class Stack 
+class Stack
 {
 public:
-   // no constructor; List constructor does initialization
+	void push( const STACKTYPE &data )
+	{
+		stackList.insertAtFront( data );
+	}
 
-   // push calls stackList object's insertAtFront member function
-   void push( const STACKTYPE &data ) 
-   { 
-      stackList.insertAtFront( data ); 
-   } // end function push
-   
-   // pop calls stackList object's removeFromFront member function
-   bool pop( STACKTYPE &data ) 
-   { 
-      return stackList.removeFromFront( data ); 
-   } // end function pop
-   
-   // isStackEmpty calls stackList object's isEmpty member function
-   bool isStackEmpty() const 
-   { 
-      return stackList.isEmpty(); 
-   } // end function isStackEmpty
-   
-   // printStack calls stackList object's print member function
-   void printStack() const 
-   { 
-      stackList.print(); 
-   } // end function printStack
+	bool pop( STACKTYPE &data)
+	{
+		return stackList.removeFromFront( data );
+	}
+
+	bool isStackEmpty() const
+	{
+		return stackList.isEmpty();
+	}
+
+	void printStack() const
+	{
+		stackList.print();
+	}
 private:
-   List< STACKTYPE > stackList; // composed List object
-}; // end class Stack
+	List< STACKTYPE > stackList;
+};
+
 
 #endif
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

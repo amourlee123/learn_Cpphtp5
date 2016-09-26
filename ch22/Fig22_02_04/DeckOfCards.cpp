@@ -9,60 +9,52 @@ using std::right;
 #include <iomanip>
 using std::setw;
 
-#include <cstdlib> // prototypes for rand and srand
+#include <cstdlib>
 using std::rand;
 using std::srand;
 
-#include <ctime> // prototype for time
+#include <ctime>
 using std::time;
 
-#include "DeckOfCards.h" // DeckOfCards class definition
+#include "DeckOfCards.h"
 
-// no-argument DeckOfCards constructor intializes deck
 DeckOfCards::DeckOfCards()
 {
-   // initialize suit array
-   static char *suit[ 4 ] = 
-      { "Hearts", "Diamonds", "Clubs", "Spades" };
+	static char *suit[ 4 ] = 
+		{ "Hearts", "Diamonds", "Clubs", "Spades" };
 
-   // initialize face array
-   static char *face[ 13 ] = 
-      { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", 
-      "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+	static char *face[ 13 ] = 
+		{ "Ace", "deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
 
-   // set values for deck of 52 Cards
-   for ( int i = 0; i < 52; i++ ) 
-   {
-      deck[ i ].face = face[ i % 13 ];
-      deck[ i ].suit = suit[ i / 13 ];
-   } // end for
-   
-   srand( time( 0 ) ); // seed random number generator
-} // end no-argument DeckOfCards constructor
+	for( int i = 0; i < 52; i++ )
+	{
+		deck[ i ].face = face[ i % 13 ];
+		deck[ i ].suit = suit[ i / 13 ];
+	}
 
-// shuffle cards in deck
+	srand( time( 0 ) );
+}
+
 void DeckOfCards::shuffle()
 {
-   // shuffle cards randomly
-   for ( int i = 0; i < 52; i++ ) 
-   {
-      int j = rand() % 52;
-      Card temp = deck[ i ];
-      deck[ i ] = deck[ j ];
-      deck[ j ] = temp;
-   } // end for
-} // end function shuffle
+	for( int i = 0; i < 52; i++ )
+	{
+		int j = rand() % 52;
+		Card temp = deck[ i ];
+		deck[ i ] = deck[ j ];
+		deck[ j ] = temp;
+	}
+}
 
-// deal cards in deck
 void DeckOfCards::deal()
 {
-   // display each card’s face and suit
-   for ( int i = 0; i < 52; i++ )
-      cout << right << setw( 5 ) << deck[ i ].face << " of " 
-         << left << setw( 8 ) << deck[ i ].suit 
-         << ( ( i + 1 ) % 2 ? '\t' : '\n' );
-} // end function deal
-
+	for( int i = 0; i < 52; i++ )
+	{
+		cout << right << setw( 5 ) << deck[ i ].face << " of "
+			<< left << setw( 8 ) << deck[ i ].suit
+			<< ( ( i + 1) % 2 ? '\t' : '\n' );
+	}
+}
 
 
 /**************************************************************************

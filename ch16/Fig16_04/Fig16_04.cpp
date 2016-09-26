@@ -7,47 +7,42 @@ using std::endl;
 #include <stdexcept>
 using std::runtime_error;
 
-// function3 throws run-time error
 void function3() throw ( runtime_error )
 {
-   cout << "In function 3" << endl;
+	cout << "In function 3" << endl;
 
-   // no try block, stack unwinding occur, return control to function2
-   throw runtime_error( "runtime_error in function3" ); 
-} // end function3
+	throw runtime_error( "runtime_error in function3" );	
+}
 
-// function2 invokes function3
 void function2() throw ( runtime_error )
 {
-   cout << "function3 is called inside function2" << endl;
-   function3(); // stack unwinding occur, return control to function1
-} // end function2
+	cout << "function 3 called inside function 2" << endl;
+	
+	function3();
+}
 
-// function1 invokes function2
 void function1() throw ( runtime_error )
 {
-   cout << "function2 is called inside function1" << endl;
-   function2(); // stack unwinding occur, return control to main
-} // end function1
+	cout << "function 2 called inside function 1" << endl;
 
-// demonstrate stack unwinding
+	function2();
+}
+	
 int main()
 {
-   // invoke function1
-   try 
-   {
-      cout << "function1 is called inside main" << endl;
-      function1(); // call function1 which throws runtime_error
-   } // end try
-   catch ( runtime_error &error ) // handle run-time error
-   {
-      cout << "Exception occurred: " << error.what() << endl;
-      cout << "Exception handled in main" << endl;
-   } // end catch
+	try
+	{
+		cout << "function1 is called inside main" << endl;
+		function1();
+	}
+	catch(runtime_error &error)
+	{
+		cout << "Exception occurred: " << error.what() << endl;
+		cout << "Exception handled in main" << endl;
+	}
 
-   return 0;
-} // end main
-
+	return 0;
+}
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

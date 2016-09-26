@@ -3,38 +3,35 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "List.h" // List class definition
-
+#include "List.h"
 template< typename QUEUETYPE >
-class Queue: private List< QUEUETYPE > 
+class Queue : private List< QUEUETYPE >
 {
 public:
-   // enqueue calls List member function insertAtBack
-   void enqueue( const QUEUETYPE &data ) 
-   { 
-      insertAtBack( data ); 
-   } // end function enqueue
+	void enqueue( const QUEUETYPE &data )
+	{
+		this->insertAtBack( data );
+	}
 
-   // dequeue calls List member function removeFromFront
-   bool dequeue( QUEUETYPE &data ) 
-   { 
-      return removeFromFront( data ); 
-   } // end function dequeue
+	bool dequeue( QUEUETYPE &data )
+	{
+		 return this->removeFromFront( data );
+	}
 
-   // isQueueEmpty calls List member function isEmpty
-   bool isQueueEmpty() const 
-   {
-      return isEmpty(); 
-   } // end function isQueueEmpty
+	bool isQueueEmpty() const
+	{
+		return this->isEmpty();
+	}
 
-   // printQueue calls List member function print
-   void printQueue() const 
-   { 
-      print(); 
-   } // end function printQueue
-}; // end class Queue
+	void printQueue() const
+	{
+		this->print();
+	}
+};
+
 
 #endif
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

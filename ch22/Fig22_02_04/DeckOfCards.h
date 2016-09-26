@@ -3,24 +3,23 @@
 // represents a deck of playing cards.
 
 // Card structure definition
-struct Card                 
-{                           
-   char *face;              
-   char *suit;              
-}; // end structure Card    
 
-// DeckOfCards class definition
+struct Card
+{
+	char *face;
+	char *suit;
+};
+
 class DeckOfCards
 {
 public:
-   DeckOfCards(); // constructor initializes deck
-   void shuffle(); // shuffles cards in deck
-   void deal(); // deals cards in deck
+	DeckOfCards();
+	void shuffle();
+	void deal();
 
 private:
-   Card deck[ 52 ]; // represents deck of cards
-}; // end class DeckOfCards
-
+	Card deck[ 52 ];
+};
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

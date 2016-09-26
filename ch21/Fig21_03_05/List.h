@@ -1,182 +1,173 @@
 // Fig. 21.4: List.h
 // Template List class definition.
+
 #ifndef LIST_H
 #define LIST_H
 
 #include <iostream>
 using std::cout;
+using std::endl;
 
-#include "Listnode.h" // ListNode class definition
+#include "ListNode.h"
 
 template< typename NODETYPE >
-class List 
+class List
 {
 public:
-   List(); // constructor
-   ~List(); // destructor
-   void insertAtFront( const NODETYPE & );
-   void insertAtBack( const NODETYPE & );
-   bool removeFromFront( NODETYPE & );
-   bool removeFromBack( NODETYPE & );
-   bool isEmpty() const;
-   void print() const;
+	List();
+	~List();
+	void insertAtFront( const NODETYPE & );
+	void insertAtBack( const NODETYPE & );
+	bool removeFromFront( NODETYPE & );
+	bool removeFromBack( NODETYPE & );
+	bool isEmpty() const;
+	void print() const;
 private:
-   ListNode< NODETYPE > *firstPtr; // pointer to first node
-   ListNode< NODETYPE > *lastPtr; // pointer to last node
+	ListNode< NODETYPE > *firstPtr;
+	ListNode< NODETYPE > *lastPtr;
+	
+	ListNode< NODETYPE > *getNewNode( const NODETYPE & );
+};
 
-   // utility function to allocate new node
-   ListNode< NODETYPE > *getNewNode( const NODETYPE & );
-}; // end class List
-
-// default constructor
 template< typename NODETYPE >
-List< NODETYPE >::List() 
-   : firstPtr( 0 ), lastPtr( 0 ) 
-{ 
-   // empty body
-} // end List constructor
+List< NODETYPE >::List()
+	: firstPtr( 0 ), lastPtr( 0 )
+{
 
-// destructor
+}
+
 template< typename NODETYPE >
 List< NODETYPE >::~List()
 {
-   if ( !isEmpty() ) // List is not empty
-   {    
-      cout << "Destroying nodes ...\n";
+	if( !isEmpty() )
+	{
+		cout << "Destroying nodes ...\n";
 
-      ListNode< NODETYPE > *currentPtr = firstPtr;
-      ListNode< NODETYPE > *tempPtr;
+		ListNode< NODETYPE > *currentPtr = firstPtr;
+		ListNode< NODETYPE > *tempPtr;
 
-      while ( currentPtr != 0 ) // delete remaining nodes
-      {  
-         tempPtr = currentPtr;
-         cout << tempPtr->data << '\n';
-         currentPtr = currentPtr->nextPtr;
-         delete tempPtr;
-      } // end while
-   } // end if
+		while( currentPtr != 0 )
+		{
+			tempPtr = currentPtr;
+			cout << tempPtr->data << "\n";
+			currentPtr = tempPtr->nextPtr;
+			delete tempPtr;
+		}
+	}
 
-   cout << "All nodes destroyed\n\n";
-} // end List destructor
+	cout << "All nodes destroyed\n\n";
+}
 
-// insert node at front of list
 template< typename NODETYPE >
 void List< NODETYPE >::insertAtFront( const NODETYPE &value )
 {
-   ListNode< NODETYPE > *newPtr = getNewNode( value ); // new node
+	ListNode< NODETYPE > *newPtr = getNewNode( value );
 
-   if ( isEmpty() ) // List is empty
-      firstPtr = lastPtr = newPtr; // new list has only one node
-   else // List is not empty
-   {
-      newPtr->nextPtr = firstPtr; // point new node to previous 1st node
-      firstPtr = newPtr; // aim firstPtr at new node
-   } // end else
-} // end function insertAtFront
+	if( isEmpty() )
+	{
+		firstPtr = lastPtr = newPtr;
+	}
+	else 
+		newPtr->nextPtr = firstPtr;
+		firstPtr = newPtr;
+}
 
-// insert node at back of list
 template< typename NODETYPE >
 void List< NODETYPE >::insertAtBack( const NODETYPE &value )
 {
-   ListNode< NODETYPE > *newPtr = getNewNode( value ); // new node
+	ListNode< NODETYPE > *newPtr = getNewNode( value );
+	
+	if( isEmpty() )
+	{
+		firstPtr = lastPtr = newPtr;
+	}
+	else
+	{
+		lastPtr->nextPtr = newPtr;
+		lastPtr = newPtr;
+	}
+}
 
-   if ( isEmpty() ) // List is empty
-      firstPtr = lastPtr = newPtr; // new list has only one node
-   else // List is not empty
-   {
-      lastPtr->nextPtr = newPtr; // update previous last node
-      lastPtr = newPtr; // new last node
-   } // end else
-} // end function insertAtBack
-
-// delete node from front of list
 template< typename NODETYPE >
 bool List< NODETYPE >::removeFromFront( NODETYPE &value )
 {
-   if ( isEmpty() ) // List is empty
-      return false; // delete unsuccessful
-   else 
-   {
-      ListNode< NODETYPE > *tempPtr = firstPtr; // hold tempPtr to delete
+	if( isEmpty() )
+		return false;
+	
+	else
+	{
+		ListNode< NODETYPE > *tempPtr = firstPtr;
 
-      if ( firstPtr == lastPtr )
-         firstPtr = lastPtr = 0; // no nodes remain after removal
-      else
-         firstPtr = firstPtr->nextPtr; // point to previous 2nd node
+		if( firstPtr == lastPtr )
+			firstPtr = lastPtr = 0;
+		else
+			firstPtr = firstPtr->nextPtr;
 
-      value = tempPtr->data; // return data being removed
-      delete tempPtr; // reclaim previous front node
-      return true; // delete successful
-   } // end else
-} // end function removeFromFront
+		value = tempPtr->data;
+		delete tempPtr;
+		return true;
+	}
+}
 
-// delete node from back of list
+
 template< typename NODETYPE >
 bool List< NODETYPE >::removeFromBack( NODETYPE &value )
 {
-   if ( isEmpty() ) // List is empty
-      return false; // delete unsuccessful
-   else 
-   {
-      ListNode< NODETYPE > *tempPtr = lastPtr; // hold tempPtr to delete
+	ListNode< NODETYPE > *tempPtr = lastPtr;
+	
+	if( isEmpty() )
+		return false;
 
-      if ( firstPtr == lastPtr ) // List has one element
-         firstPtr = lastPtr = 0; // no nodes remain after removal
-      else 
-      {
-         ListNode< NODETYPE > *currentPtr = firstPtr;
+	else
+	{
+		ListNode< NODETYPE > *currentPtr = firstPtr;
+	
+		while( currentPtr->nextPtr != lastPtr )
+			currentPtr = currentPtr->nextPtr;	
+		
+		lastPtr = currentPtr;
+		currentPtr->nextPtr = 0;
+	}
 
-         // locate second-to-last element            
-         while ( currentPtr->nextPtr != lastPtr )    
-            currentPtr = currentPtr->nextPtr; // move to next node
+	value = tempPtr->data;
+	delete tempPtr;
+	return true;
+}
 
-         lastPtr = currentPtr; // remove last node
-         currentPtr->nextPtr = 0; // this is now the last node
-      } // end else
-
-      value = tempPtr->data; // return value from old last node
-      delete tempPtr; // reclaim former last node
-      return true; // delete successful
-   } // end else
-} // end function removeFromBack
-
-// is List empty?
-template< typename NODETYPE > 
-bool List< NODETYPE >::isEmpty() const 
-{ 
-   return firstPtr == 0; 
-} // end function isEmpty
-
-// return pointer to newly allocated node
-template< typename NODETYPE >
-ListNode< NODETYPE > *List< NODETYPE >::getNewNode( 
-   const NODETYPE &value )
+template< typename NODETYPE>
+bool List< NODETYPE >::isEmpty() const
 {
-   return new ListNode< NODETYPE >( value );
-} // end function getNewNode
+	return firstPtr == 0;
+}
 
-// display contents of List
-template< typename NODETYPE >
+template< typename NODETYPE>
 void List< NODETYPE >::print() const
 {
-   if ( isEmpty() ) // List is empty
-   {
-      cout << "The list is empty\n\n";
-      return;
-   } // end if
+	if( isEmpty() )
+	{
+		cout << "The list is empty\n\n";
+		return;
+	}
+	
+	ListNode< NODETYPE > *currentPtr = firstPtr;
 
-   ListNode< NODETYPE > *currentPtr = firstPtr;
+	cout << "The List is: ";
 
-   cout << "The list is: ";
+	while( currentPtr != 0 )	
+	{
+		cout << currentPtr->data << ' ';
+		currentPtr = currentPtr->nextPtr;
+	}
 
-   while ( currentPtr != 0 ) // get element data
-   {
-      cout << currentPtr->data << ' ';
-      currentPtr = currentPtr->nextPtr;
-   } // end while
+	cout << "\n\n";
+}
 
-   cout << "\n\n";
-} // end function print
+template< typename NODETYPE>
+ListNode< NODETYPE > *List< NODETYPE >::getNewNode(
+	const NODETYPE &value )
+{
+	return new ListNode< NODETYPE >( value );
+}
 
 #endif
 

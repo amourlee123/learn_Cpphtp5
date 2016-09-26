@@ -11,65 +11,58 @@ using std::right;
 using std::showpoint;
 
 #include <iomanip>
-using std::setprecision;
 using std::setw;
+using std::setprecision;
+
+#include <cstdlib>
+using std::exit;
 
 #include <fstream>
 using std::ifstream;
 using std::ostream;
 
-#include <cstdlib> 
-using std::exit; // exit function prototype
+#include "ClientData.h"
 
-#include "ClientData.h" // ClientData class definition
- 
-void outputLine( ostream&, const ClientData & ); // prototype
+void outputLine( ostream&, const ClientData & );
 
 int main()
 {
-   ifstream inCredit( "credit.dat", ios::in );
+	ifstream inCredit("credit.dat", ios::in );
 
-   // exit program if ifstream cannot open file
-   if ( !inCredit ) 
-   {
-      cerr << "File could not be opened." << endl;
-      exit( 1 );
-   } // end if
+	if( !inCredit )
+	{
+		cerr << "File could not be opened." << endl;
+		exit( 1 );
+	}
 
-   cout << left << setw( 10 ) << "Account" << setw( 16 )
-      << "Last Name" << setw( 11 ) << "First Name" << left
-      << setw( 10 ) << right << "Balance" << endl;
+	cout << left << setw( 10 ) << "Account" << setw( 16 )
+		<< "Last Name" << setw( 11 ) << "First Name" << left << setw( 10 )
+		<< right << "Balance" << endl;
 
-   ClientData client; // create record
+	ClientData client;
 
-   // read first record from file
-   inCredit.read( reinterpret_cast< char * >( &client ), 
-      sizeof( ClientData ) );
+	inCredit.read( reinterpret_cast< char * >( &client ), sizeof( ClientData ) );
 
-   // read all records from file
-   while ( inCredit && !inCredit.eof() ) 
-   {
-      // display record
-      if ( client.getAccountNumber() != 0 )
-         outputLine( cout, client );
+	while( inCredit && !inCredit.eof() )
+	{
+		if( client.getAccountNumber() != 0 )
+			outputLine( cout, client );
 
-      // read next from file
-      inCredit.read( reinterpret_cast< char * >( &client ),
-         sizeof( ClientData ) );
-   } // end while
+		inCredit.read( reinterpret_cast< char * >( &client ), sizeof( ClientData ) );
+	}
 
-   return 0;
-} // end main
+	return 0;
+}
 
-// display single record
 void outputLine( ostream &output, const ClientData &record )
 {
-   output << left << setw( 10 ) << record.getAccountNumber()
-      << setw( 16 ) << record.getLastName()
-      << setw( 11 ) << record.getFirstName()
-      << setw( 10 ) << setprecision( 2 ) << right << fixed 
-      << showpoint << record.getBalance() << endl;
-} // end function outputLine
+	output << left << setw( 10 ) << record.getAccountNumber()
+		<< setw( 16 ) << record.getLastName()
+		<< setw( 11 ) << record.getFirstName()
+		<< setw( 10 ) << setprecision( 2 ) << right << fixed
+		<< showpoint << record.getBalance() << endl;
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *

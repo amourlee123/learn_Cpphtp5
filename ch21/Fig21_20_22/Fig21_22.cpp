@@ -8,56 +8,57 @@ using std::fixed;
 #include <iomanip>
 using std::setprecision;
 
-#include "Tree.h" // Tree class definition
+#include "Tree.h"
 
 int main()
 {
-   Tree< int > intTree; // create Tree of int values
-   int intValue;
+	Tree< int > intTree;
+	int intValue;
 
-   cout << "Enter 10 integer values:\n";
+	cout << "Enter 10 integer values:\n";
 
-   // insert 10 integers to intTree
-   for ( int i = 0; i < 10; i++ ) 
-   {
-      cin >> intValue;
-      intTree.insertNode( intValue );
-   } // end for
+	for( int i = 0; i < 10; i++ )
+	{
+		cin >> intValue;
+		intTree.insertNode( intValue );
+	}
 
-   cout << "\nPreorder traversal\n";
-   intTree.preOrderTraversal();
+	cout << "\nPreorder traversal\n";
+	intTree.preOrderTraversal();
 
-   cout << "\nInorder traversal\n";
-   intTree.inOrderTraversal();
+	cout << "\nInorder traversal\n";
+	intTree.inOrderTraversal();
 
-   cout << "\nPostorder traversal\n";
-   intTree.postOrderTraversal();
+	cout << "\nPostorder traversal\n";
+	intTree.postOrderTraversal();
 
-   Tree< double > doubleTree; // create Tree of double values
-   double doubleValue;
 
-   cout << fixed << setprecision( 1 )
-      << "\n\n\nEnter 10 double values:\n";
+	Tree< double > doubleTree;
+	double doubleValue;
 
-   // insert 10 doubles to doubleTree
-   for ( int j = 0; j < 10; j++ ) 
-   {
-      cin >> doubleValue;
-      doubleTree.insertNode( doubleValue );
-   } // end for
+	cout << fixed << setprecision( 1 )
+		<< "\n\nEnter 10 double values:\n";
 
-   cout << "\nPreorder traversal\n";
-   doubleTree.preOrderTraversal();
+	for( int j = 0; j < 10; j++ )
+	{
+		cin >> doubleValue;
+		doubleTree.insertNode( doubleValue );
+	}
 
-   cout << "\nInorder traversal\n";
-   doubleTree.inOrderTraversal();
+	cout << "\nPreorder traversal\n";
+	doubleTree.preOrderTraversal();
 
-   cout << "\nPostorder traversal\n";
-   doubleTree.postOrderTraversal();
+	cout << "\nInorder traversal\n";
+	doubleTree.inOrderTraversal();
 
-   cout << endl;
-   return 0;
-} // end main
+	cout << "\npostOrderTraversal\n";
+	doubleTree.postOrderTraversal();
+
+	cout << endl;
+
+	return 0;
+}
+
 
 /**************************************************************************
  * (C) Copyright 1992-2005 by Deitel & Associates, Inc. and               *
